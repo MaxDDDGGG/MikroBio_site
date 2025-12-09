@@ -41,22 +41,49 @@ body {
 }
 
 /* ======================= Header ======================= */
+header.header {
+    background: var(--header-background);
+    padding: 10px 20px;
+    border-bottom: 4px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+header.header h1 {
+    font-size: 3.5rem;
+    color: var(--text-color);
+    text-align: center;
+    flex-grow: 1;
+}
+
+header.header .logo {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    width: 100px;
+    height: auto;
+}
+
 @media (max-width: 768px) {
     header.header {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding: 15px;
         text-align: center;
     }
 
     header.header h1 {
-        font-size: 2.2rem;
+        font-size: 2.3rem;
         margin-bottom: 10px;
     }
 
     header.header .logo {
         position: static;
-        width: 70px;
-        margin-top: 5px;
+        width: 80px;
+        margin-top: 8px;
     }
 }
 
@@ -66,9 +93,10 @@ body {
     }
 
     header.header .logo {
-        width: 55px;
+        width: 60px;
     }
 }
+
 
 /* ======================= Hero Section ======================= */
 .hero {
