@@ -41,29 +41,33 @@ body {
 }
 
 /* ======================= Header ======================= */
-header.header {
-    background: var(--header-background);
-    padding: 10px 20px;
-    border-bottom: 4px solid var(--border-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+@media (max-width: 768px) {
+    header.header {
+        flex-direction: column;
+        padding: 15px;
+        text-align: center;
+    }
+
+    header.header h1 {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+
+    header.header .logo {
+        position: static;
+        width: 70px;
+        margin-top: 5px;
+    }
 }
 
-header.header h1 {
-    font-size: 3.5rem;
-    color: var(--text-color);
-    text-align: center;
-    flex-grow: 1;
-}
+@media (max-width: 480px) {
+    header.header h1 {
+        font-size: 1.8rem;
+    }
 
-header.header .logo {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    width: 100px;
-    height: auto;
+    header.header .logo {
+        width: 55px;
+    }
 }
 
 /* ======================= Hero Section ======================= */
@@ -105,7 +109,6 @@ header.header .logo {
 }
 
 /* ======================= Bots section ======================= */
-/* ======================= Bot Carousel (1 image visible) ======================= */
 
 .carousel {
     width: 100%;
@@ -138,7 +141,6 @@ header.header .logo {
     100%        { transform: translateX(-400%); }
 }
 
-/* Responsive (mobile-friendly) */
 @media(max-width: 768px) {
     .track img { height: 280px; }
 }
