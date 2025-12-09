@@ -2,13 +2,13 @@
 :root {
     --primary-color: #1e1e1e;
     --secondary-color: #000000;
-    --hover-color: #2b8080;
+    --hover-color: #0c99c4;
     --background-color: #2c2c2c;
     --text-color: #ffffff;
     --border-color: #ffffff;
-    --button-hover-color: #2b8080;
-    --focus-outline-color: #2b8080;
-    --header-background: #2b8080;
+    --button-hover-color: #0c99c4;
+    --focus-outline-color: #0c99c4;
+    --header-background: #0c99c4;
 
     --card-bg-color: #1a1a1a;
     --card-hover-bg-color: #292929;
