@@ -20,7 +20,7 @@
     <h2>Contact Us</h2>
     <p>Have questions about MikroBot or our AI-powered diagnostics? Fill out the form below and we’ll get back to you.</p>
 
-    <form action="mailto:m.griffiths22@outlook.com, jason@dynamic-diagnostics.ltd" method="POST" enctype="text/plain">
+    <form id="enquiryForm">
         <label for="name">Full Name:</label>
         <input type="text" id="name" name="name" placeholder="Your full name" required>
 
@@ -34,7 +34,7 @@
         <textarea id="message" name="message" placeholder="Write your enquiry here..." rows="6" required></textarea>
 
         <button type="submit" class="btn cta-btn">Send Enquiry</button>
-        <button type="submit" class="btn cta-btn"> Return to home</button>
+        <button type="button" class="btn cta-btn" onclick="window.location.href='index.html'">Return to home</button>
     </form>
 </section>
 
@@ -45,5 +45,19 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script>
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value,
+            message: document.getElementById('message').value
+        };
+        console.log('Form submitted:', formData);
+        alert('Thank you for your enquiry! We will get back to you soon.');
+        this.reset();
+    });
+</script>
 </body>
 </html>
