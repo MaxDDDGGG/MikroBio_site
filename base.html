@@ -1,101 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Page{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <link rel="icon" sizes="16x16" href="{{ url_for('static', filename='mikrobio2.jpg') }}" type="image/jpg">
-  </head>
-  <body>
-    <header class="header">
-        <h1>
-            MikroBot            
-            <img src="{{ url_for('static', filename='mikrobio1.jpg') }}" alt="Logo" class="logo">
-        </h1>
-    </header>
-    <div id="status-container">  
-      <span id="status-light" style="width: 10px; background-color: #ffffff; height: 10px; border-radius: 50%; display: inline-block;"></span>
-      <span id="status-text">  Checking...</span>
-    </div>
-    <div class="layout">
-      {% if current_user.is_authenticated %}
-        <nav class="sidebar" aria-label="Navigation">
-            <h2>Navigation</h2>
-            <ul>
-              {% if request.endpoint != 'home' %}
-                  <li><a href="{{ url_for('home') }}">Home</a></li>
-              {% endif %}
-              {% if request.endpoint != 'test_page' %}
-                  <li><a href="{{ url_for('test_page') }}">Test</a></li>
-              {% endif %}
-              {% if request.endpoint != 'calibrate' %}
-                  <li><a href="{{ url_for('calibrate_page') }}">Calibrate</a></li>
-              {% endif %}
-              {% if request.endpoint != 'profile' %}
-              <li><a href="{{ url_for('profile_page', user_id=current_user.id) }}">Profile</a></li>
-              {% endif %}
-              <li><a href="{{ url_for('logout') }}">Log out</a></li>
-          </ul>
-        </nav>
-      {% endif %}
+    <title>{% block title %}MikroBio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-      <div class="main-content">
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-            <ul class="flash-messages">
-              {% for message in messages %}
-                <li>{{ message }}</li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% endwith %}
-        {% block content %}{% endblock %}
-      </div>
-    </div>
+<!-- ================= HEADER ================= -->
+<header class="header">
+    <h1>MikroBio</h1>
+    <img src="{{ url_for('static', filename='mikrobio4.jpg') }}" class="logo" alt="MikroBio Logo">
+</header>
 
-    <footer>
-      <p>&copy; 2024 MikroBot | <a href="/privacy">Privacy Policy</a></p>
-      <img src="{{ url_for('static', filename='mikrobio2.jpg') }}" alt="MikroBot Logo" class="logo">
-  </footer>
-  
+<!-- ================= NAVIGATION ================= -->
+<div class="layout">
+    <nav class="sidebar" aria-label="Navigation">
+        <h2>Navigation</h2>
+        <ul>
+            {% if request.endpoint != 'home' %}
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+            {% endif %}
+            {% if request.endpoint != 'enquiries' %}
+                <li><a href="{{ url_for('enquiries') }}">Enquiries</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 
-    <script>
-      let isConnected = false;
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="main-content">
+        {% block content %}
+        <!-- Page-specific content goes here -->
+        {% endblock %}
+    </main>
+</div>
 
-      function updateConnectionStatus(isConnected) {
-        const statusLight = document.getElementById('status-light');
-        const statusText = document.getElementById('status-text');
-    
-        if (isConnected) {
-          statusLight.style.backgroundColor = 'green';
-          statusText.textContent = '  ---MikroBot Connected---';
-        } else {
-          statusLight.style.backgroundColor = 'red';
-          statusText.textContent = '  ---MikroBot Not Connected---';
-        }
-      }
-    
-      function checkConnection() {
-        if (!isConnected) {
-          fetch('/check-connection')
-            .then(response => response.json())
-            .then(data => {
-              if (data.connected) {
-                isConnected = true;
-              }
-              updateConnectionStatus(data.connected);
-            })
-            .catch(() => {
-              updateConnectionStatus(false); 
-            });
-        }
-      }
+<!-- ================= FOOTER ================= -->
+<footer>
+    <p>© 2025 MikroBio | Biotechnology & AI Automation</p>
+    <img src="{{ url_for('static', filename='mikrobio4.jpg') }}" class="logo" alt="logo">
+</footer>
 
-      document.addEventListener('DOMContentLoaded', () => {
-        checkConnection();
-        setInterval(checkConnection, 10000); 
-      });
-    </script>
-  </body>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
 </html>
