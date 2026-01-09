@@ -1,6 +1,10 @@
-// Simple smooth scroll to feature section
+// script.js
+
 function scrollToFeatures() {
-    document.getElementById("features").scrollIntoView({ behavior: "smooth" });
+    const features = document.getElementById("features");
+    if (features) {
+        features.scrollIntoView({ behavior: "smooth" });
+    }
 }
 
 // Fade elements into view
@@ -17,4 +21,28 @@ function fadeOnScroll() {
 }
 
 window.addEventListener("scroll", fadeOnScroll);
-window.onload = fadeOnScroll;
+window.addEventListener("load", fadeOnScroll);
+
+// ----- Enquiry form -----
+const enquiryForm = document.getElementById('enquiryForm');
+
+if (enquiryForm && window.emailjs) {
+    enquiryForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        emailjs.send("service_55kgdsb", "template_f7oiwse", {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            company: document.getElementById('company').value,
+            message: document.getElementById('message').value
+        })
+        .then(() => {
+            alert('Thank you for your enquiry! We will get back to you soon.');
+            this.reset();
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Something went wrong. Please try again.');
+        });
+    });
+}
