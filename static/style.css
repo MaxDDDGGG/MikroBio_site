@@ -1,7 +1,7 @@
 /* ==========================================================================
    1. GLOBAL SYSTEM TOKENS & DESIGN RESETS
    ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght=300;400;500;600;700&display=swap');
 
 :root {
     /* Corporate Branding Identity Colors */
@@ -56,28 +56,37 @@ a {
    2. UNIVERSAL SITE HEADER & NAVIGATION
    ========================================================================== */
 .header {
+    position: sticky; /* Enhanced positioning context for desktop headers */
     top: 0;
     z-index: 1000;
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 6%;
-    background: var(--soft-silver);
+    padding: 0.8rem 6%;
+    background: rgba(244, 246, 248, 0.85); /* Integrated alpha layer for modern blur */
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(10, 37, 64, 0.05);
 }
 
+.logo {
+    height: 150px; /* Optimized desktop baseline to prevent extreme vertical expansion */
+    width: auto;
+    display: block;
+}
 
 .nav {
     display: flex;
-    gap: 5rem;
+    gap: 3rem; /* Reduced from 5rem to protect integrity on medium-sized screens */
+    align-items: center;
 }
 
 .nav a {
     color: var(--deep-navy);
     font-weight: 500;
     font-size: 0.95rem;
+    position: relative;
 }
 
 .nav a:hover {
@@ -89,6 +98,8 @@ a {
     font-size: 1.8rem;
     cursor: pointer;
     color: var(--deep-navy);
+    background: none;
+    border: none;
 }
 
 /* ==========================================================================
@@ -177,7 +188,7 @@ a {
 .hero-right img {
     width: 100%;
     max-width: 480px;
-
+    height: auto;
 }
 
 /* ==========================================================================
@@ -220,6 +231,7 @@ a {
 h1 {
     margin-top: 6rem;
     margin-bottom: 2rem;
+    text-align: center;
 }
 
 .gallery {
@@ -248,7 +260,7 @@ h1 {
     line-height: 1.6;
     text-align: center;
     margin-bottom: 2rem;
-    min-height: 75px; /* Keeps layouts aligned when character limits vary */
+    min-height: 75px; 
 }
 
 .card-image-wrapper {
@@ -256,6 +268,7 @@ h1 {
     height: 340px;
     border-radius: 8px;
     box-shadow: 0 8px 25px rgba(10, 37, 64, 0.08);
+    overflow: hidden; /* Fixes edge alignment issue during transform scaled micro-interactions */
 }
 
 .card-image-wrapper img {
@@ -350,7 +363,6 @@ h1 {
     color: var(--deep-navy);
 }
 
-/* Bullet Point Modification */
 .technology-left li::before {
     content: "";
     position: absolute;
@@ -367,6 +379,7 @@ h1 {
     width: 100%;
     border-radius: 12px;
     box-shadow: 0 12px 30px rgba(10, 37, 64, 0.1);
+    height: auto;
 }
 
 /* ==========================================================================
@@ -390,7 +403,6 @@ h1 {
     color: #555555;
 }
 
-/* Internal Dynamic Lists Container */
 .about-grid-wrapper {
     display: flex;
     justify-content: space-around;
@@ -428,7 +440,6 @@ h1 {
     color: #4A5568;
 }
 
-/* Scientific List Indicators Replacement */
 .about-column li::before {
     content: "▪";
     position: absolute;
@@ -467,6 +478,10 @@ footer {
     text-decoration: underline;
 }
 
+.features-about-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 /* ==========================================================================
    10. RESPONSIVE COMPONENT CONVERSIONS
    ========================================================================== */
@@ -478,7 +493,7 @@ footer {
     }
     
     .hero-right {
-        order: -1; /* Elevates imaging components above textual groups */
+        order: -1; 
     }
     
     .hero-left p, .technology-left p {
@@ -502,28 +517,51 @@ footer {
 
 @media (max-width: 768px) {
     .header {
-        padding: 0 5%;
+        flex-wrap: wrap;
+        padding: 0.8rem 5%;
+        gap: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
-    
-    .nav {
-        display: none; /* Controlled internally via js/script.js dynamic mobile toggles */
+
+    .logo {
+        height: 55px; /* Clean normalized value scales container evenly */
     }
-    
+
     .mobile-menu-btn {
         display: block;
+        font-size: 2rem;
+    }
+
+    .nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+        background: var(--soft-silver);
+        border-top: 1px solid rgba(10, 37, 64, 0.08);
+    }
+
+    .nav.active {
+        display: flex;
     }
     
     .gallery {
         grid-template-columns: 1fr;
         gap: 2.5rem;
     }
-    
-    .card-description {
-        min-height: auto;
-    }
-    
-    .features {
+    .features-about-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+}
+
+@media (max-width: 580px) {
+    .features {
+        grid-template-columns: 1fr; /* Safeguard column breakdown mapping */
     }
 }
 
@@ -544,7 +582,7 @@ footer {
 }
 
 /* ==========================================================================
-   CUSTOM MODAL POPUP SYSTEM
+   11. CUSTOM MODAL POPUP SYSTEM
    ========================================================================== */
 .custom-modal {
     position: fixed;
@@ -552,18 +590,23 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(10, 37, 64, 0.6); /* Backdrop tint matching deep-navy */
+    background: rgba(10, 37, 64, 0.6); 
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    
+    /* State switches driven cleanly via JS visibility targeting toggles */
     opacity: 0;
+    pointer-events: none; 
     transition: opacity 0.3s ease;
 }
 
 .custom-modal.modal-visible {
     opacity: 1;
+    pointer-events: auto;
 }
 
 .modal-content {
