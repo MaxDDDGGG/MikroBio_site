@@ -64,9 +64,7 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem 6%;
-    background: rgba(244, 246, 248, 0.85); /* Integrated alpha layer for modern blur */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(244, 246, 248, 1); /* Integrated alpha layer for modern blur */
     border-bottom: 1px solid rgba(10, 37, 64, 0.05);
 }
 
