@@ -56,33 +56,22 @@ a {
    2. UNIVERSAL SITE HEADER & NAVIGATION
    ========================================================================== */
 .header {
-    position: sticky;
     top: 0;
     z-index: 1000;
-    height: 85px;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 6%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--soft-silver);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(10, 37, 64, 0.05);
 }
 
-/* Branding Typography Optimization */
-.brand h1 span {
-    display: inline-block;
-    transform: scaleY(0.85);
-    transform-origin: middle;
-    letter-spacing: 1rem;
-    text-transform: uppercase;
-    font-weight: 420;
-    margin-bottom: 2rem;
-}
 
 .nav {
     display: flex;
-    gap: 2rem;
+    gap: 5rem;
 }
 
 .nav a {
